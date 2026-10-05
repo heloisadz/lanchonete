@@ -4,9 +4,9 @@
 #include "pilha.h"
 #include "cardapio.h"
 
-void criar_pedido(Pedido *pedido, Item *cardapio, int total_itens_cardapio, int *proximoNumeroPedido) {
+void criar_pedido(Pedido *pedido, Item *cardapio, int total_itens_cardapio, int *proximoNumeroPedido){
 
-    if (total_itens_cardapio == 0) {
+    if (total_itens_cardapio == 0){
         printf("\nNao ha itens cadastrados no cardapio.\n");
         return;
     }
@@ -22,7 +22,7 @@ void criar_pedido(Pedido *pedido, Item *cardapio, int total_itens_cardapio, int 
     printf("Nome do cliente: ");
     scanf(" %49[^\n]", pedido->cliente);
 
-    while (pedido->quantidade_itens < 10) {
+    while (pedido->quantidade_itens < 10){
 
         int codigo;
         int encontrado = -1;
@@ -34,18 +34,18 @@ void criar_pedido(Pedido *pedido, Item *cardapio, int total_itens_cardapio, int 
         printf("\nDigite o codigo do item  (para  digite 0): ");
         scanf("%d", &codigo);
 
-        if (codigo == 0) {
+        if (codigo == 0){
             break;
         }
 
-        for (int i = 0; i < total_itens_cardapio; i++) {
-            if (cardapio[i].codigo == codigo) {
+        for (int i = 0; i < total_itens_cardapio; i++){
+            if (cardapio[i].codigo == codigo){
                 encontrado = i;
                 break;
             }
         }
 
-        if (encontrado == -1) {
+        if (encontrado == -1){
             printf("Codigo de item invalido.\n");
             continue;
         }
@@ -53,7 +53,7 @@ void criar_pedido(Pedido *pedido, Item *cardapio, int total_itens_cardapio, int 
         printf("Quantidade: ");
         scanf("%d", &quantidade);
 
-        if (quantidade <= 0) {
+        if (quantidade <= 0){
             printf("Quantidade invalida.\n");
             continue;
         }
@@ -66,7 +66,7 @@ void criar_pedido(Pedido *pedido, Item *cardapio, int total_itens_cardapio, int 
         pedido->quantidade_itens++;
     }
 
-    if (pedido->quantidade_itens == 0) {
+    if (pedido->quantidade_itens == 0){
         printf("\nPedido cancelado: nenhum item foi adicionado.\n");
         return;
     }
@@ -93,7 +93,7 @@ void criar_pedido(Pedido *pedido, Item *cardapio, int total_itens_cardapio, int 
 
 
 
-int main() {
+int main(){
 
     Fila fila;
     Pilha pilha;
@@ -108,7 +108,7 @@ int main() {
     iniciar_fila(&fila);
     iniciar_pilha(&pilha);
 
-    do {
+    do{
 
         printf("\n========== LANCHONETE ==========\n");
         printf("1 - Adicionar pedido a fila\n");
@@ -127,14 +127,14 @@ int main() {
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
-        switch (opcao) {
+        switch (opcao){
 
-            case 1: {
+            case 1:{
                 Pedido pedido;
 
                 criar_pedido(&pedido, cardapio, total_itens_cardapio, &proximoNumeroPedido);
 
-                if (pedido.quantidade_itens > 0) {
+                if (pedido.quantidade_itens > 0){
                     adicionar_fila(&fila, pedido);
                     printf("Pedido adicionado a fila de espera!\n");
                 }
@@ -145,10 +145,10 @@ int main() {
                 consultar_proximo(&fila);
                 break;
 
-            case 3: {
+            case 3:{
                 Pedido pedido;
 
-                if (remover_proximo_fila(&fila, &pedido)) {
+                if (remover_proximo_fila(&fila, &pedido)){
                     adicionar_pilha(&pilha, &pedido);
 
                     printf("\nPedido %d preparado com sucesso!\n", pedido.numero);
@@ -163,7 +163,7 @@ int main() {
                 consultar_topo(&pilha);
                 break;
 
-            case 5: {
+            case 5:{
                 int numero;
 
                 printf("\nDigite o numero do pedido: ");
@@ -173,7 +173,7 @@ int main() {
                 break;
             }
 
-            case 6: {
+            case 6:{
                 Pedido pedido;
 
                 remover_topo_pilha(&pilha, &pedido);

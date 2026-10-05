@@ -4,17 +4,17 @@
 #include "fila.h"
 #include "pedido.h"
 
-void iniciar_pilha(Pilha *pilha) {
+void iniciar_pilha(Pilha *pilha){
     pilha->topo = NULL;
 }
-int pilha_vazia(Pilha *pilha) {
+int pilha_vazia(Pilha *pilha){
     return pilha->topo == NULL;
 }
 
-void adicionar_pilha(Pilha *pilha, Pedido *pedido) {
+void adicionar_pilha(Pilha *pilha, Pedido *pedido){
     No *novo = malloc(sizeof(No));
 
-    if (novo == NULL) {
+    if (novo == NULL){
         printf("Erro: nao foi possivel alocar memoria.\n");
         return;
     }
@@ -23,9 +23,9 @@ void adicionar_pilha(Pilha *pilha, Pedido *pedido) {
     novo->proximo = pilha->topo;
     pilha->topo = novo;
 }
-void consultar_topo(Pilha *pilha) {
+void consultar_topo(Pilha *pilha){
 
-    if (pilha_vazia(pilha)) {
+    if (pilha_vazia(pilha)){
         printf("A pilha esta vazia.\n");
         return;
     }
@@ -39,7 +39,7 @@ void consultar_topo(Pilha *pilha) {
 
     printf("Itens:\n");
 
-    for (int i = 0; i < pedido->quantidade_itens; i++) {
+    for (int i = 0; i < pedido->quantidade_itens; i++){
 
         printf("- %s x%d - R$ %.2f\n",
                pedido->itens[i].item.nome,
@@ -49,8 +49,8 @@ void consultar_topo(Pilha *pilha) {
 
     printf("Total: R$ %.2f\n", pedido->total);
 }
-int remover_topo_pilha(Pilha *pilha, Pedido *pedido) {
-    if (pilha_vazia(pilha)) {
+int remover_topo_pilha(Pilha *pilha, Pedido *pedido){
+    if (pilha_vazia(pilha)){
         printf("A pilha esta vazia. Nao ha pedido para remover.\n");
         return 0;
     }
@@ -66,18 +66,18 @@ int remover_topo_pilha(Pilha *pilha, Pedido *pedido) {
 
     return 1;
 }
-void limpar_pilha(Pilha *pilha) {
+void limpar_pilha(Pilha *pilha){
     No *atual;
 
-    while (pilha->topo != NULL) {
+    while (pilha->topo != NULL){
         atual = pilha->topo;
         pilha->topo = pilha->topo->proximo;
         free(atual);
     }
 }
-void mostrar_pilha(Pilha *pilha) {
+void mostrar_pilha(Pilha *pilha){
 
-    if (pilha_vazia(pilha)) {
+    if (pilha_vazia(pilha)){
         printf("A pilha esta vazia.\n");
         return;
     }
@@ -89,7 +89,7 @@ void mostrar_pilha(Pilha *pilha) {
 
     printf("\n========== HISTORICO DE PEDIDOS ==========\n");
 
-    while (!pilha_vazia(pilha)) {
+    while (!pilha_vazia(pilha)){
 
         remover_topo_pilha(pilha, &pedido);
 
@@ -98,7 +98,7 @@ void mostrar_pilha(Pilha *pilha) {
 
         printf("Itens:\n");
 
-        for (int i = 0; i < pedido.quantidade_itens; i++) {
+        for (int i = 0; i < pedido.quantidade_itens; i++){
 
             printf("- %s x%d - R$ %.2f\n",
                    pedido.itens[i].item.nome,
@@ -113,7 +113,7 @@ void mostrar_pilha(Pilha *pilha) {
         adicionar_pilha(&temporaria, &pedido);
     }
 
-    while (!pilha_vazia(&temporaria)) {
+    while (!pilha_vazia(&temporaria)){
 
         remover_topo_pilha(&temporaria, &pedido);
 
@@ -121,9 +121,9 @@ void mostrar_pilha(Pilha *pilha) {
     }
 }
 
-void consultar_por_id(Pilha *pilha, int numero) {
+void consultar_por_id(Pilha *pilha, int numero){
 
-    if (pilha_vazia(pilha)) {
+    if (pilha_vazia(pilha)){
         printf("A pilha esta vazia.\n");
         return;
     }
@@ -134,11 +134,11 @@ void consultar_por_id(Pilha *pilha, int numero) {
     Pedido pedido;
     int encontrado = 0;
 
-    while (!pilha_vazia(pilha)) {
+    while (!pilha_vazia(pilha)){
 
         remover_topo_pilha(pilha, &pedido);
 
-        if (pedido.numero == numero) {
+        if (pedido.numero == numero){
 
             printf("\n========== PEDIDO ENCONTRADO ==========\n");
 
@@ -147,7 +147,7 @@ void consultar_por_id(Pilha *pilha, int numero) {
 
             printf("Itens:\n");
 
-            for (int i = 0; i < pedido.quantidade_itens; i++) {
+            for (int i = 0; i < pedido.quantidade_itens; i++){
 
                 printf("-%s (%dx): R$ %.2f\n",
                        pedido.itens[i].item.nome,
@@ -166,14 +166,14 @@ void consultar_por_id(Pilha *pilha, int numero) {
         adicionar_pilha(&temporaria, &pedido);
     }
 
-    while (!pilha_vazia(&temporaria)) {
+    while (!pilha_vazia(&temporaria)){
 
         remover_topo_pilha(&temporaria, &pedido);
 
         adicionar_pilha(pilha, &pedido);
     }
 
-    if (!encontrado) {
+    if (!encontrado){
         printf("Pedido %d nao encontrado no historico.\n", numero);
     }
 }
