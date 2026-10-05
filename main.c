@@ -136,7 +136,7 @@ int main(){
 
                 if (pedido.quantidade_itens > 0){
                     adicionar_fila(&fila, pedido);
-                    printf("Pedido adicionado a fila de espera!\n");
+                    
                 }
                 break;
             }
