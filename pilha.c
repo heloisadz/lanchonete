@@ -46,8 +46,7 @@ void consultar_topo(Pilha *pilha) {
         printf("- %s x%d - R$ %.2f\n",
                pedido->itens[i].item.nome,
                pedido->itens[i].quantidade,
-               pedido->itens[i].item.preco *
-               pedido->itens[i].quantidade);
+               pedido->itens[i].item.preco * pedido->itens[i].quantidade);
     }
 
     printf("Total: R$ %.2f\n", pedido->total);
@@ -106,8 +105,7 @@ void mostrar_pilha(Pilha *pilha) {
             printf("- %s x%d - R$ %.2f\n",
                    pedido.itens[i].item.nome,
                    pedido.itens[i].quantidade,
-                   pedido.itens[i].item.preco *
-                   pedido.itens[i].quantidade);
+                   pedido.itens[i].item.preco * pedido.itens[i].quantidade);
         }
 
         printf("Total: R$ %.2f\n", pedido.total);

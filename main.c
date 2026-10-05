@@ -189,11 +189,7 @@ int main() {
                 break;
 
             case 9:
-                adicionar_item_cardapio(
-                    &cardapio,
-                    &total_itens_cardapio,
-                    &proximoCodigoItem
-                );
+                adicionar_item_cardapio( &cardapio, &total_itens_cardapio, &proximoCodigoItem);
                 break;
 
             case 10:
@@ -201,10 +197,7 @@ int main() {
                 break;
 
             case 11:
-                remover_item_cardapio(
-                    &cardapio,
-                    &total_itens_cardapio
-                );
+                remover_item_cardapio( &cardapio, &total_itens_cardapio);
                 break;
 
             case 0:

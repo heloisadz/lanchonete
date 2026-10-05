@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include "cardapio.h"
 
-void adicionar_item_cardapio(Item **cardapio, int *total_itens_cardapio,
-                             int *proximoCodigoItem) {
+void adicionar_item_cardapio(Item **cardapio, int *total_itens_cardapio, int *proximoCodigoItem) {
 
     Item *novo;
 
-    novo = realloc(*cardapio,
-                   (*total_itens_cardapio + 1) * sizeof(Item));
+    novo = realloc(*cardapio, (*total_itens_cardapio + 1) * sizeof(Item));
 
     if (novo == NULL) {
         printf("Erro: nao foi possivel alocar memoria.\n");
@@ -25,10 +23,9 @@ void adicionar_item_cardapio(Item **cardapio, int *total_itens_cardapio,
     scanf(" %49[^\n]", (*cardapio)[*total_itens_cardapio].nome);
 
     printf("Preco: R$ ");
-    scanf("%f", &(*cardapio)[*total_itens_cardapio].preco);
+    scanf("%f", &(*cardapio)[*total_itens_cardapio].preco); 
 
-    printf("Item cadastrado com codigo %d!\n",
-           (*cardapio)[*total_itens_cardapio].codigo);
+    printf("Item cadastrado com codigo %d!\n", (*cardapio)[*total_itens_cardapio].codigo);
 
     (*total_itens_cardapio)++;
     (*proximoCodigoItem)++;
